@@ -19,7 +19,7 @@ pipeline {
         stage('Créer et pousser un tag') {
             steps {
                 script {
-                    def gitTag = "v${BUILD_NUMBER}"
+                    def gitTag = "version_${BUILD_NUMBER}"
                     sh "git tag ${gitTag}"
                     sh "git push origin ${gitTag}"
                 }
