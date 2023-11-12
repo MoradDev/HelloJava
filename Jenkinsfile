@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Récupérer le dépôt') {
             steps {
-                git credentialsId: 'GitHubKey', url: 'https://MoradDev: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@github.com/MoradDev/HelloJava.git'
+                git credentialsId: 'GitHubKey', url: 'https://github.com/MoradDev/HelloJava.git'
             }
         }
 
