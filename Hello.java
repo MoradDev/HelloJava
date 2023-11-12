@@ -2,6 +2,6 @@
 
 class Hello {
     public static void main(String[] args) {
-        System.out.println("Hello Tag 2 avec vizualiser !!! "); 
+        System.out.println("Hello Tag 3 avec pipeline vue !!! "); 
     }
 }
