@@ -21,7 +21,7 @@ pipeline {
                 script {
                     def gitTag = "version_${BUILD_NUMBER}"
                     sh "git tag ${gitTag}"
-                    sh "git push ${gitTag}"
+                    sh "git push origin/master ${gitTag}"
                 }
             }
         }
