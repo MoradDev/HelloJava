@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Récupérer le dépôt') {
             steps {
-                checkout([$class: 'GitSCM', branches: [[name: '*/master']], userRemoteConfigs: [[url: 'https://MoradDev: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@github.com/MoradDev/HelloJava.git']]])
+                git credentialsId: 'GitHubKey', url: 'https://MoradDev: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@github.com/MoradDev/HelloJava.git'
             }
         }
 
