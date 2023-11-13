@@ -2,6 +2,6 @@
 
 class Hello {
     public static void main(String[] args) {
-        System.out.println("Hello Essai Jenkinsfile 1 !!!! "); 
+        System.out.println("Hello Pipeline graphique !!!! "); 
     }
 }
