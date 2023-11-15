@@ -2,6 +2,6 @@
 
 class Hello {
     public static void main(String[] args) {
-        System.out.println("Hello Pipeline graphique !!!! "); 
+        System.out.println("Hello premier job git/jenkins "); 
     }
 }
