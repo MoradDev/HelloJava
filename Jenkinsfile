@@ -2,38 +2,41 @@ pipeline {
     agent any
 
     stages {
-        stage('Récupérer le dépôt') {
+        stage('Récupération de l\'applicatif') {
             steps {
-                git credentialsId: 'GitHubSSH', url: 'git@github.com:MoradDev/HelloJava.git'
-
-            }
-        }
-
-        stage('Compilation et exécution') {
-            steps {
-                sh 'javac Hello.java'
-
-                sh 'java Hello'
-            }
-        }
-
-        stage('Créer et pousser un tag') {
-            steps {
+                git url: 'https://MoradDev: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@github.com/MoradDev/HelloJava.git'
                 script {
-                    def gitTag = "version_${BUILD_NUMBER}"
-                    sh "git tag ${gitTag}"
-                    sh "git push origin ${gitTag}"
+                    // Copiez le fichier Hello.java dans /tmp
+                    sh 'rm -f /tmp/*.java'
+                    sh 'cp Hello.java /tmp'
                 }
             }
         }
-    }
-
-    post {
-        success {
-            echo 'Pipeline terminé avec succès.'
+        
+        stage('Build de l\'applicatif') {
+            steps {
+                dir('/tmp') {
+                    sh 'javac Hello.java'
+                    sh 'java Hello'
+                }
+            }
         }
-        failure {
-            echo 'Pipeline échoué.'
+        
+        stage("Tag Version. Release") {
+            environment { 
+                GIT_TAG = "Version-2.$BUILD_NUMBER"
+            }
+            steps {
+                script {
+                    // Configuration des informations de l'utilisateur Git
+                    sh 'git config user.name "MoradDev"'
+                    sh 'git config user.email "morad.mlik@protonmail.com"'
+                    
+                    // Création et poussée du tag Git
+                    sh "git tag -a \$GIT_TAG -m \"[Jenkins CI] New Tag\""
+                    sh "git push origin \$GIT_TAG"
+                }
+            }
         }
     }
 }
