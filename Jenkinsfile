@@ -29,8 +29,8 @@ pipeline {
             steps {
                 script {
                     // Configuration des informations de l'utilisateur Git
-                    sh 'git config user.name "MoradDev"'
-                    sh 'git config user.email "morad.mlik@protonmail.com"'
+                    sh 'git config --global user.name "MoradDev"'
+                    sh 'git config --global user.email "morad.mlik@protonmail.com"'
                     
                     // Création et poussée du tag Git
                     sh "git tag -a \$GIT_TAG -m \"[Jenkins CI] New Tag\""
